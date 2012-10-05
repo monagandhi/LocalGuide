@@ -50,20 +50,6 @@
     </script>
   </head>
   <body onload="initialize()">
-    <!--
-    <div>
-      <input id="latlng" type="textbox" value="40.714224,-73.961452">
-    </div>
-    <div>
-      <input type="button" value="Reverse Geocode" onclick="codeLatLng()">
-    </div>
-    <div id="map_canvas" style="height: 90%; top:60px; border: 1px solid black;"></div>
-    <div id="maps_div" class="main_content">
-      <div id="map" data-lat="37.76066276932667" data-lng="-122.4215445715702">
-      </div>
-      
-    </div>
-  -->
     
     <style type="text/css">
       #map_tool_form {
@@ -73,8 +59,8 @@
 
       #map_canvas {
         float: left;
-        height: 500px;
-        width: 650px;
+        height: 900px;
+        width: 1150px;
       }
 
       h1 {
@@ -82,10 +68,27 @@
       }
     </style>
 
-    <form id="map_tool_form">
-      <input type="submit" /><br />
-      <textarea id="lat_lng" rows="30" cols="30">
-      </textarea>
+    <form class="map_tool_form" action="/get_data" method="post">
+      <fieldset>
+       <div class="control-group">
+         <label class="control-label" for="City">City</label>
+         <div class="controls">
+           <select id="city" name="city">
+           <% @cities.each do |city| %>
+             <option name="<%= city %>" value="<%= city %>">
+               <%= city %>
+             </option>
+           <% end %>
+           </select>
+         </div>
+       </div>
+       <div class="control-group">
+         <div class="controls">
+           <input type="submit" class="btn" name="mapit" value="Map It!">
+             <br/><br/>
+       </div>
+
+     </fieldset>
     </form>
     <div id="map_canvas">
     </div>    
