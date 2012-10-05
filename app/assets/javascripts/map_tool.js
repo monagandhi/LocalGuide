@@ -8,25 +8,6 @@ jQuery(document).ready(function() {
     new google.maps.Point(0,0),
     // The anchor for this image is the base of the flagpole at 0,32.
     new google.maps.Point(6, 20));
-  
-  icons["bar"] = new google.maps.MarkerImage("/pins/pin_bar.png",
-    null,
-    new google.maps.Point(0,0),
-    new google.maps.Point(6, 20),
-    new google.maps.Size(20, 20));
-    
-  icons["restaurant"] = new google.maps.MarkerImage("/pins/restaurant.png",
-    null,
-    new google.maps.Point(0,0),
-    new google.maps.Point(6, 20),
-    new google.maps.Size(20, 20));
-  
-  var iconShadow = new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/ridefinder-images/mm_20_shadow.png',
-    // The shadow image is larger in the horizontal dimension
-    // while the position and offset are the same as for the main image.
-    new google.maps.Size(22, 20),
-    new google.maps.Point(0,0),
-    new google.maps.Point(6, 20));
 
   function getMarkerImage(iconColor) {
     if ((typeof(iconColor)=="undefined") || (iconColor==null)) { 
@@ -43,13 +24,18 @@ jQuery(document).ready(function() {
     } 
     return icons[iconColor];
   }
-  
-  function getShadow(iconColor) {
-    if (iconColor == "bar" || iconColor == "restaurant")
-      return null;
-    else
-      return iconShadow;
-  }
+
+  var infoWindow = new google.maps.InfoWindow;
+
+  var onMarkerClick = function() {
+    var marker = this;
+    var latLng = marker.getPosition();
+    infoWindow.setContent('<h3>Marker position is:</h3>' +
+        latLng.lat() + ', ' + latLng.lng());
+
+    infoWindow.open(map, marker);
+  };
+
 
   var map = new google.maps.Map(document.getElementById('map_canvas'), {
     zoom: 10,
@@ -69,7 +55,7 @@ jQuery(document).ready(function() {
     });
 
     // Add markers to the map
-   
+    
     // Marker sizes are expressed as a Size of X,Y
     // where the origin of the image (0,0) is located
     // in the top left of the image.
@@ -84,7 +70,12 @@ jQuery(document).ready(function() {
       new google.maps.Point(0,0),
       // The anchor for this image is the base of the flagpole at 0,32.
       new google.maps.Point(6, 20));
-    
+    var iconShadow = new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/ridefinder-images/mm_20_shadow.png',
+      // The shadow image is larger in the horizontal dimension
+      // while the position and offset are the same as for the main image.
+      new google.maps.Size(22, 20),
+      new google.maps.Point(0,0),
+      new google.maps.Point(6, 20));
       // Shapes define the clickable region of the icon.
       // The type defines an HTML &lt;area&gt; element 'poly' which
       // traces out a polygon as a series of X,Y points. The final
@@ -112,11 +103,12 @@ jQuery(document).ready(function() {
       var marker = new google.maps.Marker({
         position: latLng,
         map: map,
-        shadow: getShadow(color),
+        shadow: iconShadow,
         icon: getMarkerImage(color),
         shape: iconShape,
         zIndex: zindex
       });
+      google.maps.event.addListener(marker, 'click', onMarkerClick);
       markers.push(marker);
     });
 
