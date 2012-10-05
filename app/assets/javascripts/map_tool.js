@@ -6,7 +6,7 @@ $(document).ready(function() {
     new google.maps.Point(0,0),
     new google.maps.Point(6, 20));
 
-  icons["bar"] = new google.maps.MarkerImage("/pins/pin_bar.png",
+  icons["bar"] = new google.maps.MarkerImage("/pins/pin_cafe.png",
     null,
     new google.maps.Point(0,0),
     new google.maps.Point(6, 20),
