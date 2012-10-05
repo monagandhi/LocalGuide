@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title><%= t('shared.Welcome_to_Airbnb', :default=>"Welcome to Airbnb!") %></title>
+<link href="/stylesheets/email.css" media="screen" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=720">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<style type="text/css">
+a,a.normal-link,a.normal-link:link {text-decoration:none}
+a.normal-link:hover, a.highlight-link:hover {text-decoration:underline}
+img {-ms-interpolation-mode: bicubic;}
+
+@media only screen and (max-device-width: 768px) {
+#aapl-eyebrow, #aapl-footer {-webkit-text-size-adjust:120%;}
+#aapl-eyebrow a, #aapl-footer a {color:inherit}
+}
+</style>
+<!--[if gte mso 9]>
+<style type="text/css">
+table,td,div,p {font-family: Lucida Sans, Lucida Sans Unicode, Lucida Grande, Arial, Helvetica, Verdana, sans-serif !important;line-height:normal !important}
+</style>
+<![endif]-->
+<!--[if lte mso 7]>
+<style type="text/css">
+table,td,div,p {font-family: Lucida Grande, Lucida Sans, Lucida Sans Unicode, Arial, Helvetica, Verdana, sans-serif !important;line-height:normal}
+</style>
+<![endif]-->
+</head>
+<body bgcolor="#dce8f6" style="margin:0;padding:0;background-color:#dce8f6;">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr>
+<td style="padding:7px 10px 40px 10px;background-color:#dce8f6;
+  <% if local_assigns[:bg_image].present? %>
+    background-image: url('<%= bg_image %>');
+  <% end %>
+">
+<!-- site container -->
+<% unless @header.nil? %>
+<table width="400" border="0" cellspacing="0" cellpadding="0" align="center" style="margin: 0 auto"><tr><td class="superheader" align="center"><%= @header %></td></tr></table>
+<% end %>
+<!-- banner begin -->
+<table width="562" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto">
+<tr>
+<td align="left" valign="top" style="padding:7px 0px;">
+<a href="http://<%= @host %>/"><img src="<%= url_to_image "email/logosmall.png" %>" border="0" alt="Airbnb" width="104" height="51"></a>
+</td>
+<td align="right" valign="bottom" style="padding:11px 3px;">
+<% if with_links %>
+<% signin_url = "http://#{@host}/home/dashboard"; if @aut then signin_url << "?aut=#{@aut}&auc=#{@auc}&aui=#{@aui}" end %>
+<div class="header"><a class="highlight-link" href="<%= signin_url %>"><%= t('shared.Sign_In', :default=>"Sign In") %></a> &nbsp; &nbsp; <a class="normal-link" href="http://<%= @host %>/help"><%= t('shared.Help', :default=>"Help") %></a> &nbsp; &nbsp; <a class="normal-link" href="http://<%= @host %>/search"><%= t('shared.Search', :default=>"Search") %></a> &nbsp; &nbsp; <a class="normal-link" href="http://<%= @host %>/contact"><%= t('shared.Contact', :default=>"Contact") %></a>
+</div>
+<% end %>
+</td>
+</tr>
+</table>
+<!-- banner end -->
+<table width="562" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto"> 
+<tr>
+<% if banner_type == :photostack %>
+<!-- photostack begin --> 
+<td width="562" height="198" style="margin:0;padding:0;line-height:0px;" colspan="3" background="<%= url_to_image "email/banner-top.png" %>"></td> 
+</tr> 
+<tr> 
+<td style="margin:0;padding:0;line-height:0px;" width="155" height="80" background="<%= url_to_image "email/banner-bottom-left.png" %>"></td> 
+<td style="margin:0;padding:0;line-height:0px;" width="266" valign="top" bgcolor="#fafafa" background="<%= url_to_image "email/banner-bottom-center.png" %>" align="center"> 
+<%= yield %>
+</td> 
+<td style="margin:0;padding:0;line-height:0px;" width="141" height="80" background="<%= url_to_image "email/banner-bottom-right.png" %>"></td> 
+</tr> 
+</table> 
+<!-- photostack end --> 
+<!-- main content table begin -->
+<table width="562" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto">
+<tr>
+<td width="1" bgcolor="#9bb7db"> </td>
+<td width="560" align="center" bgcolor="#ffffff">
+<% elsif banner_type == :community %>
+<td width="562" height="148" style="margin:0;padding:0;line-height:0px;" colspan="3" background="http://assets.airbnb.com.s3.amazonaws.com/images/product/communities/map.jpg"></td>
+</tr>
+<tr>
+<td width="1" bgcolor="#9bb7db"> </td>
+<td width="560" align="left" bgcolor="#ffffff">
+<% else %>
+<td width="562" height="8" style="margin:0;padding:0;line-height:0px;" colspan="3" background="<%= url_to_image "email/box-top.png" %>"></td>
+</tr>
+<tr>
+<td width="1" bgcolor="#9bb7db"> </td>
+<td width="560" align="left" bgcolor="#ffffff">
+<% end %>

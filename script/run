@@ -1,0 +1,53 @@
+#!/bin/bash
+source /etc/profile
+set -o errexit -o nounset -o pipefail
+
+if [[ -s ./config/env ]]
+then
+  export RACK_ENV="$(cat ./config/env)"
+  export RAILS_ENV="$RACK_ENV"
+fi
+
+function setup {
+  shared
+  debs
+  bundler
+  assets
+  crontab
+}
+
+function shared {
+  mkdir -p '../shared'
+}
+
+function debs {
+  if [[ -s ./debs ]]
+  then
+    cat ./debs | xargs sudo aptitude install --quiet -y
+  fi
+}
+
+function bundler {
+  if [[ -s ./Gemfile ]]
+  then
+    bundle install --path ../shared/bundle --without development test
+  fi
+}
+
+function assets {
+  # Set RAILS_ENV so development stuff will not be loaded.
+  RAILS_ENV=production bundle exec rake assets:precompile
+}
+
+function crontab {
+  if [[ -s ./config/crontab ]]
+  then
+    sudo rsync ./config/crontab /etc/cron.d/LocalGuide
+  fi
+}
+
+function out { printf '%s\n' "$*" ;}
+function msg { out "$@" 1>&2      ;}
+function err { msg "$@" ; exit 1  ;}
+
+"$@"

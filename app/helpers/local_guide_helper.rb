@@ -1,0 +1,2 @@
+module LocalGuideHelper
+end

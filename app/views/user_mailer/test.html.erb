@@ -1,0 +1,29 @@
+<%= render :partial => "shared/template_header", :locals => {:with_links => true, :banner_type => nil} %>
+<table width="562" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto">
+    <tr>
+      <td width="562">
+        <div class="template-content">
+          <table width="542" border="0" cellspacing="0" cellpadding="0" align="center" style="margin: 0 auto;">
+            <tr>
+              <td width="10">&nbsp;</td>
+              <td>
+                <p class="bigheader"><%= t("ws.email.sent_successfully", :default => "This email was sent successfully! Yessss.") %></p>
+              </td>
+              </tr>
+            </table>
+        </div>
+      </td>
+    </tr>
+</table>
+
+<table width="520" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto">
+  <tr>
+    <td width="520">
+      <div class="template-content">
+        <%= airbnb_signature %>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<%= render :partial => "shared/template_footer", :locals => {:with_badges => false} %>

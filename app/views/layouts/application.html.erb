@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= @title || t('shared.Page_Title', :default=>"Vacation rentals, private rooms, sublets by the night - Accommodations on Airbnb", :suppress_ct => true) %></title>
+
+    <meta name="title" content="<%= h @title %>">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <% unless @canonical_url.blank? %>
+      <link rel="canonical" href="<%= @canonical_url %>">
+    <% end %>
+
+    <% unless @meta_description.blank? %>
+      <meta name="description" content="<%= h @meta_description.gsub(/\"/,'') %>">
+    <% end %>
+
+    <% unless @meta_keywords.blank? %>
+      <meta name="keywords" content="<%= @meta_keywords.collect{|k| k.gsub(/\"/,'') }.join(',') %>">
+    <% end %>
+
+    <% if @og_tags %>
+      <meta property="fb:app_id" content="138566025676">
+      <meta property="og:site_name" content="Airbnb">
+      <% @og_tags["og:title"] = @title if !@og_tags["og:title"] %>
+      <% @og_tags.map do |key, val| %>
+      <meta property="<%= key %>" content="<%= h val %>">
+      <% end %>
+    <% end %>
+
+    <% if @noindex %>
+      <meta name="robots" content="noindex, nofollow">
+    <% end %>
+
+    <%= csrf_meta_tags %>
+
+    <meta name="viewport" content="width=1000,maximum-scale=1.0">
+    <link rel="image_src" href="<%= @rel_image_src ? @rel_image_src : 'http://www.airbnb.com/images/airbnb_logo.png' %>">
+    <link rel="search" type="application/opensearchdescription+xml" href="http://www.airbnb.com/opensearch.xml" title="Airbnb">
+
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= yield :stylesheet_includes %>
+
+    <style>
+      <%= yield :styles %>
+    </style>
+
+    <link rel="shortcut icon" href="<%#= image_url '/logotype_favicon.ico' %>">
+  </head>
+  <body class="<%= "development" if Rails.env.development? %> <%= I18n.locale %>">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="">LocalGuide</a>
+          <ul class="nav">
+            <li><a href="#nav1">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="notices"></div>
+      <%= content_for?(:content) ? yield(:content) : yield %>
+    </div>
+
+    <%= yield :above_javascript_includes %>
+    <%= javascript_include_tag "application" %>
+
+    <script>
+      $.noConflict();
+    </script>
+
+    <%#= yield :javascript_includes %>
+
+    <script>
+      <%= yield :javascripts %>
+    </script>
+  </body>
+</html>
+<!-- ver. <%#= Airbnb::APP_VERSION %> -->

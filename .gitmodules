@@ -1,0 +1,3 @@
+[submodule "lib/oxygen"]
+	path = lib/oxygen
+	url = git@github.com:airbnb/oxygen.git

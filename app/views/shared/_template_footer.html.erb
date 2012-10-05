@@ -1,0 +1,100 @@
+</td>
+<td width="1" bgcolor="#9bb7db"></td>
+</tr>
+</table>
+<table width="562" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto">
+<tr>
+<td width="562" height="14" style="margin:0;padding:0;line-height:0px;" background="<%= url_to_image "email/box-bottom-shadow.png" %>" bgcolor="#ffffff"></td>
+</tr>
+</table>
+<% if with_badges %>
+<!-- box padding table begin -->
+<table width="562" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto">
+<tr>
+<td width="562" height="25" style="line-height: 3px"> </td>
+</tr>
+</table>
+<!-- box padding table end -->
+<!-- other recs table begin -->
+<!-- badge table begin --> 
+<table width="562" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto"> 
+<tr> 
+<td style="margin:0;padding:0;line-height:0px;" colspan="7" width="562" height="7" background="<%= url_to_image "email/quicklink-top.png" %>"></td> 
+</tr> 
+<tr> 
+<td width="1" bgcolor="#9bb7db"> </td> 
+<td width="186" align="left" valign="top" bgcolor="#ffffff"> 
+<a href="http://<%= @host %>/mobile/iphone">
+<div class="badgecontent"> 
+<h3 class="badgetitle"><%= t('email.footer_partial.iphone_app', :default=>"iPhone App") %></h3> 
+<p class="badgetext"><%= t('email.footer_partial.iphone_app_subheading', :default=>"Search & book directly from the iPhone.") %></p>
+</div> 
+</a>
+</td> 
+<td width="1" bgcolor="#dae4f2"> </td> 
+<td width="186" align="left" valign="top" bgcolor="#ffffff">
+<a href="http://<%= @host %>/login">
+<div class="badgecontent"> 
+<h3 class="badgetitle"><%= t('shared.Tip', :default=>"Tip") %></h3>
+<p class="badgetext"><%= t('email.footer_partial.tip_subheading', :default=>"Use Facebook to create your Airbnb profile.") %></p>
+</div>
+</a>
+</td> 
+<td width="1" bgcolor="#dae4f2"> </td> 
+<td width="186" align="left" valign="top" bgcolor="#ffffff">
+<a href="http://<%= @host %>/referrals?utm_source=emlfooter&utm_medium=footer&utm_campaign=referraltile">
+<div class="badgecontent">
+<h3 class="badgetitle"><%= t('email.footer_partial.ref_header', :default=>"Travel For Free") %></h3>
+<p class="badgetext"><%= t('email.footer_partial.ref_body', :default=>"Get up to $100 in travel credit for each friend you tell about Airbnb.") %></p>
+</div>
+</a>
+</td> 
+<td width="1" bgcolor="#9bb7db"> </td> 
+</tr> 
+<tr height="140"> 
+<td width="1" bgcolor="#9bb7db"> </td> 
+<td width="186" align="center" valign="middle" bgcolor="#ffffff" background="<%= url_to_image "email/badgebackground.png" %>"> 
+<a href="http://<%= @host %>/mobile/iphone">
+<img alt="iPhones" border="0" width="139" height="112" src="<%= url_to_image "email/badges/iphones.png" %>"> 
+</a>
+</td> 
+<td width="1" bgcolor="#dae4f2"> </td> 
+<td width="186" align="center" valign="middle" bgcolor="#ffffff" background="<%= url_to_image "email/badgebackground.png" %>">
+<a href="http://www.facebook.com/airbnb">
+<img alt="Blog" border="0" width="170" height="25" src="<%= url_to_image "email/badges/facebook.png" %>"> 
+</a>
+</td> 
+<td width="1" bgcolor="#dae4f2"> </td> 
+<td width="186" align="center" valign="middle" bgcolor="#ffffff" background="<%= url_to_image "email/badgebackground.png" %>">
+<a href="http://<%= @host %>/referrals?utm_source=emlfooter&utm_medium=footer&utm_campaign=referraltile">
+<img alt="Referral Program" border="0" width="142" height="97" src="<%= url_to_image "email/badges/passport.png" %>">
+</a>
+</td> 
+<td width="1" bgcolor="#9bb7db"> </td> 
+</tr> 
+<tr> 
+<td colspan="7" style="margin:0;padding:0;line-height:0px;" width="562" height="10" background="<%= url_to_image "email/quicklink-bottom.png" %>"></td> 
+</tr> 
+</table> 
+<!-- badge table end --> 
+<% end %>
+<!-- footer table begin -->
+<% if (defined?(without_text) && !without_text) || !defined?(without_text) %>
+<table width="562" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto">
+<tr>
+<td width="562" align="center" valign="middle">
+<div class="footer">
+<p class="footermain"><%= t('email.footer_partial.twitter_follow', :default=>"Follow the adventures of Airbnb:") %> <a class="footerlink" href="http://twitter.com/airbnb">@airbnb</a>, <a  class="footerlink" href="http://www.facebook.com/airbnb">facebook.com/airbnb</a>, <a class="footerlink" href="http://blog.airbnb.com">blog.airbnb.com</a></p>
+<p class="footersub"><%= t('email.footer_partial.sent_from', :default=>"Airbnb, Inc. 99 Rhode Island St, San Francisco, CA 94103") %></p>
+</div>
+</td>
+</tr>
+</table>
+<% end %>
+<!-- footer table end -->
+<!-- site container end -->
+</td>
+</tr>
+</table>
+</body>
+</html>
