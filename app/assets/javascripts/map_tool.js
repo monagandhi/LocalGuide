@@ -92,12 +92,6 @@ $(document).ready(function() {
       new google.maps.Point(0,0),
       // The anchor for this image is the base of the flagpole at 0,32.
       new google.maps.Point(6, 20));
-    var iconShadow = new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/ridefinder-images/mm_20_shadow.png',
-      // The shadow image is larger in the horizontal dimension
-      // while the position and offset are the same as for the main image.
-      new google.maps.Size(22, 20),
-      new google.maps.Point(0,0),
-      new google.maps.Point(6, 20));
       // Shapes define the clickable region of the icon.
       // The type defines an HTML &lt;area&gt; element 'poly' which
       // traces out a polygon as a series of X,Y points. The final
