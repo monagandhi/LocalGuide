@@ -14,7 +14,7 @@ function load_map_wrapper(callback) {
         gmaps.async = true;
         gmaps.src = document.location.protocol +
           "//maps.googleapis.com/maps/api/js?v=3.5&sensor=false&callback=" + callback +
-          "&language=" + ((Airbnb.options && Airbnb.options.locale) || "");
+          "&language=en";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(gmaps, s);
       })();

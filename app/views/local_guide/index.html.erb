@@ -57,5 +57,14 @@
       <input type="button" value="Reverse Geocode" onclick="codeLatLng()">
     </div>
     <div id="map_canvas" style="height: 90%; top:60px; border: 1px solid black;"></div>
+    <div id="maps_div" class="main_content" style="display:none;">
+      <div id="map" data-lat="37.76066276932667" data-lng="-122.4215445715702">
+      </div>
+    </div>
+    <script>
+      window.onload = function() {
+        load_map_wrapper('load_google_map');
+      }
+    </script>
   </body>
 </html>
