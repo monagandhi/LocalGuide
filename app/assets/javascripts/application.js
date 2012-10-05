@@ -14,5 +14,6 @@
 //= require jquery_ujs
 
 //= require ender.js
+//= require stdair/build/stdair.js
 //= require o2.js
 //= require_tree .
