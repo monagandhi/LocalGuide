@@ -50,6 +50,7 @@
     </script>
   </head>
   <body onload="initialize()">
+    <!--
     <div>
       <input id="latlng" type="textbox" value="40.714224,-73.961452">
     </div>
@@ -60,7 +61,38 @@
     <div id="maps_div" class="main_content">
       <div id="map" data-lat="37.76066276932667" data-lng="-122.4215445715702">
       </div>
+      
     </div>
+  -->
+    
+    <style type="text/css">
+      #map_tool_form {
+        float: left;
+        width: 250px;
+      }
+
+      #map_canvas {
+        float: left;
+        height: 500px;
+        width: 650px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+    </style>
+
+    <h1>Nightlife Visualization</h1>
+    <form id="map_tool_form">
+      <input type="submit" /><br />
+      <textarea id="lat_lng" rows="30" cols="30">
+      </textarea>
+    </form>
+    <div id="map_canvas">
+    </div>
+    <%= javascript_include_tag 'map_tool.js' %>
+    
+    
     <script>
       window.onload = function() {
         load_google_map();
