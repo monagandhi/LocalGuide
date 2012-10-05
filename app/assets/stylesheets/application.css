@@ -33,3 +33,13 @@
      height: 650px;
    }
  }
+ 
+ #maps_div {
+   width: 639px;
+   height: 470px;
+   float: left; }
+
+ #maps_div #map {
+   width: 639px;
+   height: 470px; }
+ 
