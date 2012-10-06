@@ -68,8 +68,8 @@ $(document).ready(function() {
   var markers = [];
   var $form = $('#map_tool_form');
 
-  $form.submit(function(e) {
-    e.preventDefault();
+  function paintMarkers() {
+    //e.preventDefault();
 
     // Clear old markers
     $.each(markers, function(i, marker) {
@@ -116,7 +116,7 @@ $(document).ready(function() {
       if(color == 'gray') {zindex = 1;}
       var latLng = new google.maps.LatLng(lat, lng);
       latLngBounds.extend(latLng);
-      console.log(latLngBounds);
+      //console.log(latLngBounds);
       var marker = new google.maps.Marker({
         position: latLng,
         map: map,
@@ -131,8 +131,8 @@ $(document).ready(function() {
     });
 
     map.fitBounds(latLngBounds);
-  });
+  }
 
   //$('#lat_lng').val('37.75, 237.6, blue\n37.7, 280');
-  $form.submit();
+  paintMarkers();
 });

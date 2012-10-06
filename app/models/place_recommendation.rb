@@ -3,5 +3,4 @@ class PlaceRecommendation < ActiveRecord::Base
   self.table_name = 'place_recommendations'
   
   belongs_to :place
-
 end

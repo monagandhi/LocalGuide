@@ -89,6 +89,24 @@
         <li data-lng="<%= marker[1] %>" data-lat="<%= marker[0] %>" data-color="<%= marker[2] %>"></li>
       <% end %>
     </ul>
+    <ul id="guidebook-recommendations" style="display: none;">
+    <%- @places.each_with_index do |rec, index| %>
+      <li class="recommendation" data-lat="<%= rec.place.lat %>" data-lng="<%= rec.place.lng %>">
+        <h2><%= link_to rec.name, rec.place.website %></h2>
+        <div class="description"><%= (h(rec.reason)).gsub("\n", '').html_safe %></div>
+        <address>
+        <%- if !rec.place.approximate_address? %>
+          <span class="location address"><%= rec.place.address %></span>
+        <%- else %>
+          <span class="location street"><%= rec.place.formatted_address %></span>
+        <%- end %>
+          <span class="city"><%= rec.place.city %></span>
+          <span class="state"><%= rec.place.state %></span>
+          <span class="zipcode"><%= rec.place.zipcode %></span>
+        </address>
+      </li>
+    <%- end %>
+    </ul>
     
     <script>
       window.onload = function() {

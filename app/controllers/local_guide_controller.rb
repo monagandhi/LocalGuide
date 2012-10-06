@@ -3,11 +3,13 @@ require 'csv'
 class LocalGuideController < ApplicationController
   
   def index
+    @places = []
     @markers = []
     @cities = ["San Francisco", "New York", "Seattle"]
   end
   
   def get_data
+    @places = []
     @markers = []
     @places = []
     @hostings = []
@@ -26,7 +28,9 @@ class LocalGuideController < ApplicationController
         @hostings << [name, city, link]
       else
         place = PlaceRecommendation.find(:first, :conditions => ["id = ?", place_hosting_id], :include => :place)
-        @place << place
+        if place
+          @places << place
+        end
       end
       category = row[1]
       country = row[2]
