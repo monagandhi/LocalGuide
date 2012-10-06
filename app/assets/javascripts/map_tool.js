@@ -6,7 +6,7 @@ $(document).ready(function() {
     new google.maps.Point(0,0),
     new google.maps.Point(6, 20));
 
-  icons["bar"] = new google.maps.MarkerImage("/pins/pin_cafe.png",
+  icons["blue"] = new google.maps.MarkerImage("/pins/pin_cafe.png",
     null,
     new google.maps.Point(0,0),
     new google.maps.Point(6, 20),
@@ -103,19 +103,20 @@ $(document).ready(function() {
     };
 
     markers = [];
-    var text = $(this).children('#lat_lng').val();
     var latLngBounds = new google.maps.LatLngBounds();
 
-    $.each(text.split('\n'), function(i, line) {
-      var tokens = line.split(',');
-      var lat = parseFloat(tokens[0]);
-      var lng = parseFloat(tokens[1]);
-      var color = $.trim(tokens[2]);
+    $('#markers li').each(function(index) {
+      $this = $(this)
+      var lat = parseFloat($this.attr("data-lat"));
+      var lng = parseFloat($this.attr("data-lng"));
+      var color = $.trim($this.attr("data-color"));
+      //console.log(lat + "," + lng + "," + color);
       if(color.length == 0) {color = undefined;}
       var zindex = 99;
       if(color == 'gray') {zindex = 1;}
       var latLng = new google.maps.LatLng(lat, lng);
       latLngBounds.extend(latLng);
+      console.log(latLngBounds);
       var marker = new google.maps.Marker({
         position: latLng,
         map: map,
@@ -124,6 +125,7 @@ $(document).ready(function() {
         shape: iconShape,
         zIndex: zindex
       });
+      lastMarker = marker;
       google.maps.event.addListener(marker, 'click', onMarkerClick);
       markers.push(marker);
     });
@@ -131,6 +133,6 @@ $(document).ready(function() {
     map.fitBounds(latLngBounds);
   });
 
-  $('#lat_lng').val('37.75, 237.6, blue\n37.7, 280');
+  //$('#lat_lng').val('37.75, 237.6, blue\n37.7, 280');
   $form.submit();
 });

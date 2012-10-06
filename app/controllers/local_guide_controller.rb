@@ -3,6 +3,7 @@ require 'csv'
 class LocalGuideController < ApplicationController
   
   def index
+    @markers = []
     @cities = ["San Francisco", "New York", "Seattle"]
   end
   
