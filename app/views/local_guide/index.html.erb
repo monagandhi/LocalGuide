@@ -52,23 +52,15 @@
   <body onload="initialize()">
     
     <style type="text/css">
-      #map_tool_form {
-        float: left;
-        width: 250px;
-      }
-
       #map_canvas {
         float: left;
         height: 900px;
         width: 1150px;
       }
 
-      h1 {
-        font-size: 20px;
-      }
     </style>
 
-    <form class="map_tool_form" action="/get_data" method="post">
+    <form id="map_tool_form" action="/get_data" method="post">
       <fieldset>
        <div class="control-group">
          <label class="control-label" for="City">City</label>
@@ -91,7 +83,12 @@
      </fieldset>
     </form>
     <div id="map_canvas">
-    </div>    
+    </div>
+    <ul id="markers" style="display:none">
+      <% @markers.each do |marker| %>
+        <li data-lng="<%= marker[1] %>" data-lat="<%= marker[0] %>" data-color="<%= marker[2] %>"></li>
+      <% end %>
+    </ul>
     
     <script>
       window.onload = function() {
