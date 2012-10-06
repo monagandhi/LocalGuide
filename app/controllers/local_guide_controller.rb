@@ -8,14 +8,25 @@ class LocalGuideController < ApplicationController
   
   def get_data
     @markers = []
+    @places = []
+    @hostings = []
     @cities = ["San Francisco", "New York", "Seattle"]
     filename = "listings_latlng.csv"
     rows = CSV.read(filename, options = Hash.new)
     rows.each do |row|
       marker = []
-      place_hosting_id = row[0] 
+      place_hosting_id = row[0].to_i
       # hosting /place info
-      # is_hosting = Hosting.find_by_id(place_hosting_id)
+      hosting = Hosting.find_by_id(place_hosting_id)
+      if hosting
+        name = hosting.name
+        city = hosting.city
+        link = "https://airbnb.com/rooms/"+ place_hosting_id.to_s
+        @hostings << [name, city, link]
+      else
+        place = PlaceRecommendation.find_by_id(place_hosting_id)
+        @places << place
+      end
       category = row[1]
       country = row[2]
       city = row[3]
