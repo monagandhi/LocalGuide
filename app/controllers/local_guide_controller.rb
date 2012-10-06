@@ -25,8 +25,8 @@ class LocalGuideController < ApplicationController
         link = "https://airbnb.com/rooms/"+ place_hosting_id.to_s
         @hostings << [name, city, link]
       else
-        place = PlaceRecommendation.find_by_id(place_hosting_id)
-        @places << place
+        place = PlaceRecommendation.find(:first, :conditions => ["id = ?", place_hosting_id], :include => :place)
+        @place << place
       end
       category = row[1]
       country = row[2]
