@@ -86,26 +86,42 @@
     </div>
     <ul id="markers" style="display:none">
       <% @markers.each do |marker| %>
-        <li data-lng="<%= marker[1] %>" data-lat="<%= marker[0] %>" data-color="<%= marker[2] %>"></li>
+        <li data-id="<%= marker[3] %>" data-lng="<%= marker[1] %>" data-lat="<%= marker[0] %>" data-color="<%= marker[2] %>"></li>
       <% end %>
     </ul>
-    <ul id="guidebook-recommendations" style="display: none;">
+    <ul id="guidebook-recommendations" style="display:none;">
     <%- @places.each_with_index do |rec, index| %>
-      <li class="recommendation" data-lat="<%= rec.place.lat %>" data-lng="<%= rec.place.lng %>">
-        <h2><%= link_to rec.name, rec.place.website %></h2>
-        <div class="description"><%= (h(rec.reason)).gsub("\n", '').html_safe %></div>
-        <address>
-        <%- if !rec.place.approximate_address? %>
-          <span class="location address"><%= rec.place.address %></span>
-        <%- else %>
-          <span class="location street"><%= rec.place.formatted_address %></span>
-        <%- end %>
-          <span class="city"><%= rec.place.city %></span>
-          <span class="state"><%= rec.place.state %></span>
-          <span class="zipcode"><%= rec.place.zipcode %></span>
+      <li id="p<%= rec.place.id %>" class="recommendation" data-lat="<%= rec.place.lat %>" data-lng="<%= rec.place.lng %>">
+        <address style="color:#808080">
+          <p><%= link_to rec.name.blank? ? rec.place.name : rec.name, rec.place.website %></p>
+          <%- if !rec.place.approximate_address? %>
+            <p class="location address"><%= rec.place.address %></p>
+          <%- else %>
+            <p class="location street"><%= rec.place.formatted_address %></p>
+          <%- end %>
+          <p>
+            <span class="city"><%= rec.place.city %></span>
+            <span class="state"><%= rec.place.state %></span>
+            <span class="zipcode"><%= rec.place.zipcode %></span>
+          </p>
         </address>
+        <div class="description"><%= (h(rec.reason)).gsub("\n", '').html_safe %></div>
       </li>
     <%- end %>
+    </ul>
+    <ul id="places-popups" style="display:none;">
+      <%- @hostings.each_with_index do |hos, index| %>
+        <li id="h<%= hos.id %>">
+          <a class="map_info_window_link_image" href="https://www.airbnb.com/rooms/<%= hos.id %>">
+            <img width="210" height="140" class="map_info_window_thumbnail" src="http://i0.muscache.com/pictures/<%= hos.id %>/small.jpg">
+          </a>
+          <p class="map_info_window_details">
+            <a class="map_info_window_link" href="https://www.airbnb.com/rooms/<%= hos.id %>"><%= hos.name %></a>
+            <span class="map_info_window_review_count"><%= hos.visible_review_count %> reviews</span>
+            <span class="map_info_window_price">$<%= hos.price_native %></span>
+          </p>
+        </li>
+      <%- end %>
     </ul>
     
     <script>

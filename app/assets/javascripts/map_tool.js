@@ -51,11 +51,21 @@ $(document).ready(function() {
   var infoWindow = new google.maps.InfoWindow;
 
   var onMarkerClick = function() {
+    globalmarker = $(this);
     var marker = this;
+    var popup = $('#p'+marker.customid);
+    if (!popup.html()) {
+      popup = $('#h'+marker.customid);
+    }
+    console.log('popup: ' + popup.html())
+    console.log("id: "+ marker.customid)
     var latLng = marker.getPosition();
-    infoWindow.setContent('<h3>Marker position is:</h3>' +
+    if (popup.html()) {
+      infoWindow.setContent(popup.html());
+    } else {
+      infoWindow.setContent('<h3>Marker position is:</h3>' +
         latLng.lat() + ', ' + latLng.lng());
-
+      }
     infoWindow.open(map, marker);
   };
 
@@ -110,6 +120,7 @@ $(document).ready(function() {
       var lat = parseFloat($this.attr("data-lat"));
       var lng = parseFloat($this.attr("data-lng"));
       var color = $.trim($this.attr("data-color"));
+      var id = parseFloat($this.attr("data-id"));
       //console.log(lat + "," + lng + "," + color);
       if(color.length == 0) {color = undefined;}
       var zindex = 99;
@@ -125,6 +136,7 @@ $(document).ready(function() {
         shape: iconShape,
         zIndex: zindex
       });
+      marker.customid = id;
       lastMarker = marker;
       google.maps.event.addListener(marker, 'click', onMarkerClick);
       markers.push(marker);

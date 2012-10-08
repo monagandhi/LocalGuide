@@ -22,3 +22,43 @@ html, body {
     width: 900px;
   }
 }
+
+#map_canvas p {
+  padding: 0;
+  border: 0;
+  outline: 0;
+  margin: 0;
+  font-size: 1.0em;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.map_info_window_details {
+  width: 210px;
+  padding: 0;
+  line-height: 14px;
+}
+
+.map_info_window_link {
+  font-size: 12px;
+  font-weight: bold;
+  color: #3D93D4;
+  width: 210px;
+  display: block;
+  padding-top: 5px;
+}
+
+.map_info_window_review_count {
+  font-size: 11px;
+  color: #999;
+  display: block;
+  float: left;
+}
+
+.map_info_window_price {
+  font-weight: bold;
+  font-size: 14px;
+  color: #3D3D3D;
+  display: block;
+  float: right;
+}

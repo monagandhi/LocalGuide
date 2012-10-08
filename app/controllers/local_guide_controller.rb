@@ -20,14 +20,13 @@ class LocalGuideController < ApplicationController
       marker = []
       place_hosting_id = row[0].to_i
       # hosting /place info
-      hosting = Hosting.find_by_id(place_hosting_id)
-      if hosting
-        name = hosting.name
-        city = hosting.city
-        link = "https://airbnb.com/rooms/"+ place_hosting_id.to_s
-        @hostings << [name, city, link]
+      if row[1] == 'listing'
+        hosting = Hosting.find_by_id(place_hosting_id)
+        if hosting
+          @hostings << hosting
+        end
       else
-        place = PlaceRecommendation.find(:first, :conditions => ["id = ?", place_hosting_id], :include => :place)
+        place = PlaceRecommendation.find(:first, :conditions => ["place_id = ?", place_hosting_id], :include => :place)
         if place
           @places << place
         end
@@ -39,9 +38,11 @@ class LocalGuideController < ApplicationController
       lng = row[5]
       color = row[6]
       if city == params[:city]
-        @markers << [lat, lng, color]
+        @markers << [lat, lng, color, place_hosting_id]
       end
-    end
+    end  
+    puts 'hostings: ' + @hostings.length.to_s
+    puts 'places: ' + @places.length.to_s
     render "index.html.erb"
   end
 end
