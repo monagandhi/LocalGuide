@@ -5,11 +5,11 @@ class LocalGuideController < ApplicationController
   def index
     @places = []
     @markers = []
+    @hostings = []
     @cities = ["San Francisco", "New York", "Seattle"]
   end
   
   def get_data
-    @places = []
     @markers = []
     @places = []
     @hostings = []
