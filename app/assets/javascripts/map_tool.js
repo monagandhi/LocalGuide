@@ -54,18 +54,30 @@ $(document).ready(function() {
     globalmarker = $(this);
     var marker = this;
     var popup = $('#p'+marker.customid);
-    if (!popup.html()) {
-      popup = $('#h'+marker.customid);
-    }
-    console.log('popup: ' + popup.html())
-    console.log("id: "+ marker.customid)
-    var latLng = marker.getPosition();
     if (popup.html()) {
       infoWindow.setContent(popup.html());
     } else {
-      infoWindow.setContent('<h3>Marker position is:</h3>' +
-        latLng.lat() + ', ' + latLng.lng());
+      popup = $('#h'+marker.customid);
+      //console.log('popup: ' + popup.html())
+      //console.log("id: "+ marker.customid)
+      if (popup.html()) {
+        var id = popup.attr("data-id");
+        var name = popup.attr("data-nm");
+        var reviews = popup.attr("data-rv");
+        var price = popup.attr("data-pr");
+      
+        infoWindow.setContent("<a class='map_info_window_link_image' href='https://www.airbnb.com/rooms/"+id+"'>"+
+  "<img width='210' height='140' class='map_info_window_thumbnail' src='http://i0.muscache.com/pictures/"+id+"/small.jpg'>"+
+  "</a><p class='map_info_window_details'>"+
+  "<a class='map_info_window_link' href='https://www.airbnb.com/rooms/"+id+"'>"+name+"</a>"+
+  "<span class='map_info_window_review_count'>"+reviews+" reviews</span>"+
+  "<span class='map_info_window_price'>$"+price+"</span></p>");
+      } else {
+        var latLng = marker.getPosition();
+        infoWindow.setContent('<h3>Marker position is:</h3>' +
+          latLng.lat() + ', ' + latLng.lng());
       }
+    }
     infoWindow.open(map, marker);
   };
 
