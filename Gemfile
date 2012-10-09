@@ -7,6 +7,7 @@ gem "configatron", "2.9.1"
 gem "unicorn", "4.3.1"
 gem "capistrano", "2.12.0"
 gem "capistrano-ext", "1.2.1"
+gem 'curb', :git => "git://github.com/taf2/curb.git"
 gem "rspec-rails", "2.10.1", :group => [:development, :test]
 gem "factory_girl_rails", "3.4.0", :group => [:development, :test]
 gem "tungsten", :git => "git@github.com:airbnb/tungsten.git", :ref => "58cd354418"

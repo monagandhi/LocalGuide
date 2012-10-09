@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/taf2/curb.git
+  revision: ed86e757805ed3679195f71011a0767b1b3d6f15
+  specs:
+    curb (0.8.0)
+
+GIT
   remote: git@github.com:airbnb/airbnb-services.git
   revision: 980f754e925a70888e229b7c96893a46f9677e8e
   ref: 980f754e92
@@ -73,7 +79,6 @@ GEM
     css_parser (1.2.6)
       addressable
       rdoc
-    curb (0.8.1)
     diff-lcs (1.1.3)
     erubis (2.7.0)
     execjs (1.4.0)
@@ -197,6 +202,7 @@ DEPENDENCIES
   capistrano-ext (= 1.2.1)
   coffee-rails (~> 3.2.1)
   configatron (= 2.9.1)
+  curb!
   factory_girl_rails (= 3.4.0)
   jquery-rails (= 2.0.2)
   mysql2 (= 0.3.11)
