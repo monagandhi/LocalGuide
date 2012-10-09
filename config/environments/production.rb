@@ -48,7 +48,10 @@ LocalGuide::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  # config.assets.precompile += %w( search.js )
+  config.assets.precompile += %w( map_tool.js )
+  config.assets.precompile += %w( map.js )
+  config.assets.precompile += %w( jquery.mapshelper.js )
+  config.assets.precompile += %w( local_guide.css.scss )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
