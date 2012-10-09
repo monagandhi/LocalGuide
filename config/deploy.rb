@@ -3,7 +3,7 @@ def system!(*args)
   $?.success? or abort "ERR: #{args.join(' ')}  ~>  #{$?}"
 end
 set :application, "LocalGuide"
-set :repository,  "git@github.com:airbnb/LocalGuide.git"
+set :repository,  "git@github.com:monagandhi/LocalGuide.git"
 set :scm,         :git
 
 app_host = 'localguide.aws.airbnb.com'
