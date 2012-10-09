@@ -6,7 +6,7 @@ set :application, "LocalGuide"
 set :repository,  "git@github.com:airbnb/LocalGuide.git"
 set :scm,         :git
 
-app_host = 'LocalGuide.aws.airbnb.com'
+app_host = 'localguide.aws.airbnb.com'
 role :web, app_host
 role :app, app_host
 role :db,  app_host, :primary => true
