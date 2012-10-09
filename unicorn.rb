@@ -3,7 +3,7 @@ worker_processes 4
 timeout 300
 listen 8000
 
-deploy_to = "/srv/LocalGuide"
+deploy_to = "/srv/localguide"
 
 current_path = "#{deploy_to}/current"
 shared_path = "#{deploy_to}/shared"

@@ -2,7 +2,7 @@ def system!(*args)
   system(*args)
   $?.success? or abort "ERR: #{args.join(' ')}  ~>  #{$?}"
 end
-set :application, "LocalGuide"
+set :application, "localguide"
 set :repository,  "git@github.com:monagandhi/LocalGuide.git"
 set :scm,         :git
 
@@ -11,7 +11,7 @@ role :web, app_host
 role :app, app_host
 role :db,  app_host, :primary => true
 
-app_root = '/srv/LocalGuide'
+app_root = '/srv/localguide'
 set :deploy_to, "#{app_root}"
 set :user,      'ubuntu'
 set :rake,      'bundle exec rake'

@@ -42,7 +42,7 @@ function assets {
 function crontab {
   if [[ -s ./config/crontab ]]
   then
-    sudo rsync ./config/crontab /etc/cron.d/LocalGuide
+    sudo rsync ./config/crontab /etc/cron.d/localguide
   fi
 }
 
