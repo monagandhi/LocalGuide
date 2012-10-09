@@ -6,7 +6,7 @@ class LocalGuideController < ApplicationController
     @places = []
     @markers = []
     @hostings = []
-    @cities = ["San Francisco", "New York", "Seattle"]
+    @cities = ["San Francisco", "New York"]
   end
   
   def get_data

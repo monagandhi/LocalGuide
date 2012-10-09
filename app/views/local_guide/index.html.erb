@@ -74,8 +74,13 @@
 
  </fieldset>
 </form>
+<%- if @markers.blank? %>
+<img src='/chart.png'>
+<%- else %>
 <div id="map_canvas">
 </div>
+<%- end %>
+
 <ul id="markers" style="display:none">
   <% @markers.each do |marker| %>
 <li data-id="<%= marker[3] %>" data-lng="<%= marker[1] %>" data-lat="<%= marker[0] %>" data-color="<%= marker[2] %>"></li>
