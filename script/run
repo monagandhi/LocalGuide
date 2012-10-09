@@ -17,7 +17,7 @@ function setup {
 }
 
 function shared {
-  mkdir -p '../shared'
+  mkdir -p '../../shared'
 }
 
 function debs {
@@ -30,7 +30,7 @@ function debs {
 function bundler {
   if [[ -s ./Gemfile ]]
   then
-    bundle install --path ../shared/bundle --without development test
+    bundle install --path ../../shared/bundle --without development test
   fi
 }
 
